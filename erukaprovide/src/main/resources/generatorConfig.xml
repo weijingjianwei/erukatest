@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--mysql数据库驱动包路径-->
+    <classPathEntry location="D:\myRepository\mysql\mysql-connector-java\5.1.38\mysql-connector-java-5.1.38.jar"/>
+    <!--
+        context：代码生成规则配置的上下文
+            id:标识
+            targetRuntime: MyBatis3Simple 只会生成基本的CRUD操作
+
+    -->
+    <context id="DB2Tables" targetRuntime="MyBatis3Simple">
+
+        <!--commentGenerator：注释生成策略-->
+        <commentGenerator>
+            <!--suppressAllComments:是否阻止注释生成-->
+            <property name="suppressAllComments" value="true"/>
+            <!--suppressDate:是否阻止时间戳生成-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!--jdbcConnection：数据库的链接属性-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mysql_test"
+                        userId="root"
+                        password="root">
+        </jdbcConnection>
+
+        <!--javaTypeResolver：java类型转换策略-->
+        <javaTypeResolver >
+            <!-- forceBigDecimals
+                 false:如果数据库中的字段类型为numeric或者decimal，在代码生成的时候根据数据库中设定的长度自动选择java类型进行转换
+                 true:直接使用java.math.BigDecimal类型-->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <!--domain生成策略；targetPackage：生成到哪个包下面，targetProject：生成到哪个项目目录下面-->
+        <javaModelGenerator targetPackage="com.meikinfo.erukaprovide.erukaprovide.domain" targetProject="src/main/java">
+            <!--<property name="enableSubPackages" value="true" />-->
+            <!--表示是否修剪字符串（去掉空格-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--sqlMapGenerator：映射文件生成策略
+               targetPackage:生成到哪个包下面，targetProject：生成到哪个项目目录下面
+        -->
+        <sqlMapGenerator targetPackage="mapper"  targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+
+        <!--mapper接口生成策略
+           type:ANNOTATEDMAPPER:注解的形式
+                XMLMAPPER：xml映射的形式-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.meikinfo.erukaprovide.erukaprovide.dao"  targetProject="src/main/java">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <!--指定要生成代码的表
+                domainObjectName：设置表对应的domain实体类生成的名称
+        -->
+        <table tableName="person" domainObjectName="Person"></table>
+
+
+    </context>
+</generatorConfiguration>

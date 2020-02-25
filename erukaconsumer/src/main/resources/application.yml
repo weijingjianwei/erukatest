@@ -1,0 +1,31 @@
+
+server:
+  port: 7000
+  servlet:
+    context-path: /erukaconsumer
+
+spring:
+  application:
+      name: erukaconsumer
+  datasource:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://localhost:3306/mysql_test?characterEncoding=utf-8
+     username: root
+     password: root
+
+  servlet:
+    multipart:
+      enabled: true
+      location: D:\workSpace\myProject\erukatest\fileInteraction
+      file-size-threshold: 100MB
+      max-file-size: 200MB
+
+
+
+eureka:
+  client:
+   service-url:
+     defaultZone: http://localhost:8761/eureka/
+
+provide:
+  url: http://localhost:8000/erukaprovider

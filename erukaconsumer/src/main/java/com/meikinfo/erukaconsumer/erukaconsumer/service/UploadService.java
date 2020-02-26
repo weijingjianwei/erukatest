@@ -21,13 +21,12 @@ public class UploadService {
     @Autowired
     private RestTemplate restTemplate;
 
-    public boolean postFileToerukaProvider(String localFilePath, String provideUrl) {
+    public boolean postFileToerukaProvider(String localFilePath) {
 
            FileSystemResource resource = new FileSystemResource(new File(localFilePath));
            MultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-           param.add("deviceId", "fileId");
            param.add("file", resource);
-           restTemplate.postForObject(provideUrl+"/upload/romote", param, Boolean.class);
+           restTemplate.postForObject("http://ERUKAPROVIDE/upload/romote", param, Boolean.class);
            return true;
     }
 }

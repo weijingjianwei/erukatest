@@ -1,5 +1,8 @@
 package com.meikinfo.erukaconsumer.erukaconsumer.controller;
 
+//import com.meikinfo.erukaconsumer.erukaconsumer.service.GetNameRemote;
+import com.meikinfo.erukaconsumer.erukaconsumer.service.GetNameRemote;
+import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +21,16 @@ public class ConsumerControllerTest1 {
 
     @Autowired
     private RestTemplate restTemplate;
+//    @Autowired
+//    private GetNameRemote getNameRemote;
+
 
     @GetMapping(value = "/consumer")
     public String consumertest1(){
-        String template = restTemplate.getForObject("http://localhost:8000/provide/id111", String.class);
+        String template = restTemplate.getForObject("http://ERUKAPROVIDE/provide/id111", String.class);
+//        String template = restTemplate.getForObject("http://localhost:8000/erukaprovider/provide/id111", String.class);
         return template;
+//        String provideMessage = getNameRemote.provideMessage("dsaa");
+//        return provideMessage;
     }
 }

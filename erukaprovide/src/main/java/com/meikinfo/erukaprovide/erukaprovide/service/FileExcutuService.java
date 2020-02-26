@@ -3,12 +3,16 @@ package com.meikinfo.erukaprovide.erukaprovide.service;
 import cn.hutool.core.date.DateTime;
 import cn.hutool.poi.excel.ExcelReader;
 import cn.hutool.poi.excel.ExcelUtil;
+import com.meikinfo.erukaprovide.erukaprovide.consts.MessageStruct;
+import com.meikinfo.erukaprovide.erukaprovide.consts.RabbitConsts;
 import com.meikinfo.erukaprovide.erukaprovide.dao.PersonMapper;
 import com.meikinfo.erukaprovide.erukaprovide.domain.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -33,8 +37,13 @@ import java.util.stream.IntStream;
 @Slf4j
 public class FileExcutuService {
 
+
+
     @Autowired
     PersonMapper personMapper;
+
+    @Autowired
+    RabbitTemplate rabbitTemplate;
     private static int oneReadNum=5000;
 
     @Transactional
@@ -70,6 +79,9 @@ public class FileExcutuService {
 
         log.info("【导入人员信息数据完成】完成时间:{}", DateTime.now().toMsStr());
 
+        //导入完全后通知
+        rabbitTemplate.convertAndSend(RabbitConsts.DIRECT_MODE_QUEUE_ONE,new MessageStruct("恭喜成功导入"+peoples.size()+"条人员信息数据"));
+        log.info("【消息发送中】");
     }
 
     public List<Person> batchBuildData(Sheet sheet, int start, int end, CountDownLatch latch) {

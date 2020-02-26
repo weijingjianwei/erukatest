@@ -32,8 +32,6 @@ public class UploadController {
     @Value("${spring.servlet.multipart.location}")
     private String fileTempPath;
 
-    @Value("${provide.url}")
-    private String provideUrl;
 
     @Autowired
     private UploadService uploadService;
@@ -52,7 +50,7 @@ public class UploadController {
             transfile = new File(localFilePath);
             file.transferTo(transfile);
             //调取服务提供方接口,传输文件数据
-            boolean uploadState = uploadService.postFileToerukaProvider(localFilePath, provideUrl);
+            boolean uploadState = uploadService.postFileToerukaProvider(localFilePath);
             if(uploadState)
             log.info("【上传远程服务器成功】，绝对路径：{}", localFilePath);
         } catch (IOException e) {

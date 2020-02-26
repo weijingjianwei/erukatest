@@ -1,16 +1,41 @@
 server:
   port: 8000
-  servlet:
-    context-path: /erukaprovider
 
 spring:
   application:
-    name: erukaprovide
+    name: ERUKAPROVIDE
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/mysql_test?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    virtual-host: /
+    # 手动提交消息
+    listener:
+      simple:
+        acknowledge-mode: manual
+      direct:
+        acknowledge-mode: manual
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: 1353208500@qq.com
+    password: brklxjnawkjoifbj
+    protocol: smtp
+    test-connection: true
+    default-encoding: UTF-8
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.ssl.enable: true
+      mail.display.sendmail: 1353208500@qq.com
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml

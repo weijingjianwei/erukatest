@@ -22,7 +22,7 @@ public class ProvideControllertest1 {
     private ProvideServicetest1 provideServicetest1;
 
     @GetMapping(value = "/provide/{id}")
-    public String provideMessage(@PathVariable String id){
+    public String provideMessage(@PathVariable("id") String id){
         return provideServicetest1.provideMessage(id);
     }
 }

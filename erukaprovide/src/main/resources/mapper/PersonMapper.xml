@@ -2,30 +2,110 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.meikinfo.erukaprovide.erukaprovide.dao.PersonMapper">
   <resultMap id="BaseResultMap" type="com.meikinfo.erukaprovide.erukaprovide.domain.Person">
-    <result column="id" jdbcType="VARCHAR" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="age" jdbcType="VARCHAR" property="age" />
+    <result column="gender" jdbcType="CHAR" property="gender" />
+    <result column="birthday" jdbcType="DATE" property="birthday" />
+    <result column="idCard" jdbcType="CHAR" property="idcard" />
+    <result column="wedlock" jdbcType="CHAR" property="wedlock" />
+    <result column="nationId" jdbcType="INTEGER" property="nationid" />
+    <result column="nativePlace" jdbcType="VARCHAR" property="nativeplace" />
+    <result column="politicId" jdbcType="INTEGER" property="politicid" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="departmentId" jdbcType="INTEGER" property="departmentid" />
+    <result column="jobLevelId" jdbcType="INTEGER" property="joblevelid" />
+    <result column="posId" jdbcType="INTEGER" property="posid" />
+    <result column="engageForm" jdbcType="VARCHAR" property="engageform" />
+    <result column="tiptopDegree" jdbcType="CHAR" property="tiptopdegree" />
+    <result column="specialty" jdbcType="VARCHAR" property="specialty" />
+    <result column="school" jdbcType="VARCHAR" property="school" />
+    <result column="beginDate" jdbcType="DATE" property="begindate" />
+    <result column="workState" jdbcType="CHAR" property="workstate" />
+    <result column="workID" jdbcType="CHAR" property="workid" />
   </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from person
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.meikinfo.erukaprovide.erukaprovide.domain.Person">
-    insert into person (id, name, age
+    insert into person (id, name, gender,
+      birthday, idCard, wedlock, nationId,
+      nativePlace, politicId, email,
+      phone, address, departmentId,
+      jobLevelId, posId, engageForm,
+      tiptopDegree, specialty, school,
+      beginDate, workState, workID
       )
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR},
+      #{birthday,jdbcType=DATE}, #{idcard,jdbcType=CHAR}, #{wedlock,jdbcType=CHAR}, #{nationid,jdbcType=INTEGER},
+      #{nativeplace,jdbcType=VARCHAR}, #{politicid,jdbcType=INTEGER}, #{email,jdbcType=VARCHAR},
+      #{phone,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{departmentid,jdbcType=INTEGER},
+      #{joblevelid,jdbcType=INTEGER}, #{posid,jdbcType=INTEGER}, #{engageform,jdbcType=VARCHAR},
+      #{tiptopdegree,jdbcType=CHAR}, #{specialty,jdbcType=VARCHAR}, #{school,jdbcType=VARCHAR},
+      #{begindate,jdbcType=DATE}, #{workstate,jdbcType=CHAR}, #{workid,jdbcType=CHAR}
       )
   </insert>
 
   <insert id="insertList">
-    insert into person (id, name, age
+    insert into person (id, name, gender,
+    birthday, idCard, wedlock, nationId,
+    nativePlace, politicId, email,
+    phone, address, departmentId,
+    jobLevelId, posId, engageForm,
+    tiptopDegree, specialty, school,
+    beginDate, workState, workID
     )
     values
+
     <foreach collection="list" item="item" separator=",">
-      (#{item.id,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.age,jdbcType=VARCHAR}
+      (#{item.id,jdbcType=INTEGER}, #{item.name,jdbcType=VARCHAR}, #{item.gender,jdbcType=CHAR},
+      #{item.birthday,jdbcType=DATE}, #{item.idcard,jdbcType=CHAR}, #{item.wedlock,jdbcType=CHAR}, #{item.nationid,jdbcType=INTEGER},
+      #{item.nativeplace,jdbcType=VARCHAR}, #{item.politicid,jdbcType=INTEGER}, #{item.email,jdbcType=VARCHAR},
+      #{item.phone,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, #{item.departmentid,jdbcType=INTEGER},
+      #{item.joblevelid,jdbcType=INTEGER}, #{item.posid,jdbcType=INTEGER}, #{item.engageform,jdbcType=VARCHAR},
+      #{item.tiptopdegree,jdbcType=CHAR}, #{item.specialty,jdbcType=VARCHAR}, #{item.school,jdbcType=VARCHAR},
+      #{item.begindate,jdbcType=DATE}, #{item.workstate,jdbcType=CHAR}, #{item.workid,jdbcType=CHAR}
       )
     </foreach>
-
   </insert>
-
+  <update id="updateByPrimaryKey" parameterType="com.meikinfo.erukaprovide.erukaprovide.domain.Person">
+    update person
+    set name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=CHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      idCard = #{idcard,jdbcType=CHAR},
+      wedlock = #{wedlock,jdbcType=CHAR},
+      nationId = #{nationid,jdbcType=INTEGER},
+      nativePlace = #{nativeplace,jdbcType=VARCHAR},
+      politicId = #{politicid,jdbcType=INTEGER},
+      email = #{email,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      departmentId = #{departmentid,jdbcType=INTEGER},
+      jobLevelId = #{joblevelid,jdbcType=INTEGER},
+      posId = #{posid,jdbcType=INTEGER},
+      engageForm = #{engageform,jdbcType=VARCHAR},
+      tiptopDegree = #{tiptopdegree,jdbcType=CHAR},
+      specialty = #{specialty,jdbcType=VARCHAR},
+      school = #{school,jdbcType=VARCHAR},
+      beginDate = #{begindate,jdbcType=DATE},
+      workState = #{workstate,jdbcType=CHAR},
+      workID = #{workid,jdbcType=CHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId,
+    email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree,
+    specialty, school, beginDate, workState, workID
+    from person
+    where id = #{id,jdbcType=INTEGER}
+  </select>
   <select id="selectAll" resultMap="BaseResultMap">
-    select id, name, age
+    select id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId,
+    email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree,
+    specialty, school, beginDate, workState, workID
     from person
   </select>
 </mapper>

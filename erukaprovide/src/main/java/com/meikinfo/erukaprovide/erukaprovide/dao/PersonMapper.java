@@ -7,9 +7,15 @@ import java.util.List;
 
 @Mapper
 public interface PersonMapper {
+    int deleteByPrimaryKey(Integer id);
+
     int insert(Person record);
 
-    int insertList(List<Person> list);
+    Person selectByPrimaryKey(Integer id);
 
     List<Person> selectAll();
+
+    int updateByPrimaryKey(Person record);
+
+    int insertList(List<Person> peoples);
 }

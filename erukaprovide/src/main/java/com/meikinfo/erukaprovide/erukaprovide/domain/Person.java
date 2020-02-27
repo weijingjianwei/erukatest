@@ -1,18 +1,57 @@
 package com.meikinfo.erukaprovide.erukaprovide.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
-    private String id;
+    private Integer id;
 
     private String name;
 
-    private String age;
+    private String gender;
 
-    public Person(String id, String name, String age) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-    }
+    private Date birthday;
+
+    private String idcard;
+
+    private String wedlock;
+
+    private Integer nationid;
+
+    private String nativeplace;
+
+    private Integer politicid;
+
+    private String email;
+
+    private String phone;
+
+    private String address;
+
+    private Integer departmentid;
+
+    private Integer joblevelid;
+
+    private Integer posid;
+
+    private String engageform;
+
+    private String tiptopdegree;
+
+    private String specialty;
+
+    private String school;
+
+    private Date begindate;
+
+    private String workstate;
+
+    private String workid;
+
 }

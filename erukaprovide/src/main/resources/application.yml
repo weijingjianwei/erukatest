@@ -6,17 +6,17 @@ spring:
     name: ERUKAPROVIDE
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.101.83:3306/mysql_test?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+    url: jdbc:mysql://localhost:3306/mysql_test?serverTimezone=CTT&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
     username: root
     password: root
   data:
     elasticsearch:
       cluster-name: my-application
-      cluster-nodes: 192.168.101.83:9300
+      cluster-nodes: localhost:9300
 
 
   rabbitmq:
-    host: 192.168.101.83
+    host: localhost
     port: 5672
     username: guest
     password: guest
@@ -48,4 +48,4 @@ mybatis:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.101.83:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/

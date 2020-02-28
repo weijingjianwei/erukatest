@@ -39,6 +39,8 @@
 							:disabled="!local.file">
 						{{ local.loadingStatus ? '本地文件上传中' : '本地上传' }}
 					</i-button>
+
+
 				</div>
 				<div>
 					<div v-if="local.log.status != 0">状态：{{local.log.message}}</div>
@@ -109,6 +111,7 @@
 				this.local.loadingStatus = false;
 				this.$Message.error('上传失败');
 			},
+
 		}
 	})
 </script>

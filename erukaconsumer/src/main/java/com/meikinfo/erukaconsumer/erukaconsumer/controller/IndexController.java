@@ -2,16 +2,18 @@ package com.meikinfo.erukaconsumer.erukaconsumer.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * <p>
  * 首页Controller
  * </p>
  */
-@Controller
+@RestController
 public class IndexController {
-    @GetMapping("")
+    @GetMapping("/test")
     public String index() {
-        return "index";
+        System.out.println("===============");
+        return "----";
     }
 }

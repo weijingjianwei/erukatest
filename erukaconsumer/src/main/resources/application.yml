@@ -20,6 +20,11 @@ spring:
       file-size-threshold: 100MB
       max-file-size: 200MB
 
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
+
 
 
 eureka:

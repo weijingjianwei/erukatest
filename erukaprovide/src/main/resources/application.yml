@@ -13,7 +13,10 @@ spring:
     elasticsearch:
       cluster-name: my-application
       cluster-nodes: localhost:9300
-
+  devtools:
+    restart:
+      enabled: true
+      additional-paths: src/main/java
 
   rabbitmq:
     host: localhost

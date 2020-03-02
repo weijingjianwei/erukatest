@@ -1,13 +1,17 @@
 package com.meikinfo.erukaconsumer.erukaconsumer.controller;
 
 //import com.meikinfo.erukaconsumer.erukaconsumer.service.GetNameRemote;
-import com.meikinfo.erukaconsumer.erukaconsumer.service.GetNameRemote;
+import com.meikinfo.erukaconsumer.erukaconsumer.domain.Person;
 import com.netflix.discovery.converters.Auto;
+import org.omg.CORBA.SetOverrideType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.List;
 
 /**
  * 描述:
@@ -33,4 +37,15 @@ public class ConsumerControllerTest1 {
 //        String provideMessage = getNameRemote.provideMessage("dsaa");
 //        return provideMessage;
     }
+
+    @RequestMapping(value = "/employee/basic/emp")
+    public void loadEmps(@RequestParam Integer page, @RequestParam Integer size){
+        System.out.println("-------------");
+    }
+
+//    public interface GetNameRemote {
+//        @GetMapping("/provide/{id}")
+//        public String provideMessage(@PathVariable("id") String id);
+//
+//    }
 }

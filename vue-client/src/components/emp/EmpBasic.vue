@@ -52,7 +52,7 @@
               <el-row>
                 <el-col :span="5">
                   政治面貌:
-                  <el-select v-model="emp.politicId" style="width: 130px" size="mini" placeholder="政治面貌">
+                  <el-select v-model="emp.politicid" style="width: 130px" size="mini" placeholder="政治面貌">
                     <el-option
                       v-for="item in politics"
                       :key="item.id"
@@ -61,20 +61,10 @@
                     </el-option>
                   </el-select>
                 </el-col>
-                <el-col :span="4">
-                  民族:
-                  <el-select v-model="emp.nationId" style="width: 130px" size="mini" placeholder="请选择民族">
-                    <el-option
-                      v-for="item in nations"
-                      :key="item.id"
-                      :label="item.name"
-                      :value="item.id">
-                    </el-option>
-                  </el-select>
-                </el-col>
+
                 <el-col :span="4">
                   职位:
-                  <el-select v-model="emp.posId" style="width: 130px" size="mini" placeholder="请选择职位">
+                  <el-select v-model="emp.posid" style="width: 130px" size="mini" placeholder="请选择职位">
                     <el-option
                       v-for="item in positions"
                       :key="item.id"
@@ -130,14 +120,21 @@
               label="性别"
               width="50">
             </el-table-column>
+
             <el-table-column
-              width="85"
+              prop="politicname"
+              label="政治面貌"
+              width="90">
+            </el-table-column>
+
+            <el-table-column
+              width="100"
               align="left"
               label="出生日期">
               <template slot-scope="scope">{{ scope.row.birthday | formatDate}}</template>
             </el-table-column>
             <el-table-column
-              prop="idCard"
+              prop="idcard"
               width="150"
               align="left"
               label="身份证号码">
@@ -149,21 +146,19 @@
             </el-table-column>
             <el-table-column
               width="50"
-              prop="nation.name"
+              prop="nationid"
               label="民族">
             </el-table-column>
+
             <el-table-column
-              prop="nativePlace"
-              width="80"
+              prop="nativeplace"
+              width="100"
               label="籍贯">
             </el-table-column>
-            <el-table-column
-              prop="politicsStatus.name"
-              label="政治面貌">
-            </el-table-column>
+
             <el-table-column
               prop="email"
-              width="180"
+              width="100"
               align="left"
               label="电子邮件">
             </el-table-column>
@@ -227,7 +222,35 @@
         showOrHidePop: false,
         showOrHidePop2: false,
         emp: {
-
+          name: '',
+          gender: '',
+          birthday: '',
+          idcard: '',
+          wedlock: '',
+          nationid: '',
+          nativeplace: '',
+          politicid: '',
+          politicname: '',
+          email: '',
+          phone: '',
+          address: '',
+          departmentid: '',
+          departmentname: '所属部门...',
+          jobLevelid: '',
+          posid: '',
+          engageform: '',
+          tiptopDegree: '',
+          specialty: '',
+          school: '',
+          beginDate: '',
+          workState: '',
+          workID: '',
+          contractTerm: '',
+          conversionTime: '',
+          notWorkDate: '',
+          beginContract: '',
+          endContract: '',
+          workAge: ''
         },
     };
     },
@@ -252,7 +275,7 @@
 
       },
       showAdvanceSearchView() {
-
+        this.advanceSearchViewVisible=true;
       },
       handleSelectionChange(val) {
 
@@ -272,8 +295,10 @@
       loadEmps() {
         var _this = this;
         this.tableLoading = true;
-        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10").then(resp => {
-
+        this.getRequest("/employee/basic/emp?page=" + this.currentPage + "&size=10&politicid="+this.emp.politicid+"&posid="+this.emp.posid).then(resp => {
+          debugger;
+          this.tableLoading = false;
+          _this.emps=resp.data;
         })
       },
 
@@ -281,7 +306,8 @@
       initData() {
         var _this = this;
         this.getRequest("/employee/basic/basicdata").then(resp => {
-
+          _this.politics=resp.data.politics;
+          _this.positions=resp.data.positions;
         })
       },
       showAddEmpView() {

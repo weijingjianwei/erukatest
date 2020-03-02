@@ -1,6 +1,13 @@
 server:
   port: 8000
 
+
+pagehelper:
+  helper-dialect: mysql
+  params=count: countSql
+  reasonable: true
+  support-methods-arguments: true
+
 spring:
   application:
     name: ERUKAPROVIDE

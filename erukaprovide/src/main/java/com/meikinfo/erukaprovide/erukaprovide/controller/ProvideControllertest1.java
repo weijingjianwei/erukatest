@@ -3,10 +3,7 @@ package com.meikinfo.erukaprovide.erukaprovide.controller;
 import com.meikinfo.erukaprovide.erukaprovide.service.ProvideServicetest1;
 import com.netflix.discovery.converters.Auto;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 描述:
@@ -21,7 +18,7 @@ public class ProvideControllertest1 {
     @Autowired
     private ProvideServicetest1 provideServicetest1;
 
-    @GetMapping(value = "/provide/{id}")
+    @RequestMapping(value = "/provide/{id}",method = RequestMethod.GET)
     public String provideMessage(@PathVariable("id") String id){
         return provideServicetest1.provideMessage(id);
     }

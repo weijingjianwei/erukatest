@@ -18,4 +18,5 @@ public interface PersonMapper {
     int updateByPrimaryKey(Person record);
 
     int insertList(List<Person> peoples);
+
 }

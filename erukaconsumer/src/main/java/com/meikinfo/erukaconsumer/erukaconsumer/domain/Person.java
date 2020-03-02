@@ -1,4 +1,4 @@
-package com.meikinfo.erukaprovide.erukaprovide.domain;
+package com.meikinfo.erukaconsumer.erukaconsumer.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,8 +27,6 @@ public class Person {
     private String nativeplace;
 
     private Integer politicid;
-
-    private String politicname;
 
     private String email;
 

@@ -32,6 +32,14 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
+
+        <!-- 分页插件 -->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+
         <!-- eraka服务方加入文件依赖-->
         <dependency>
             <groupId>io.github.openfeign.form</groupId>

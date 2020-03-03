@@ -108,4 +108,21 @@
     specialty, school, beginDate, workState, workID
     from person
   </select>
+
+  <select id="selectByparam" resultMap="BaseResultMap">
+    select id, name, gender, birthday, idCard, wedlock, nationId, nativePlace, politicId,
+    email, phone, address, departmentId, jobLevelId, posId, engageForm, tiptopDegree,
+    specialty, school, beginDate, workState, workID
+    from person
+    where 1=1
+
+    <if test="politicid !=null and politicid!='' "  >
+      and person.politicid= #{politicid}
+    </if>
+
+    <if test="posid !=null and posid!='' "  >
+      and person.posid= #{posid}
+    </if>
+
+  </select>
 </mapper>

@@ -28,6 +28,8 @@ public class Person {
 
     private Integer politicid;
 
+    private String politicname;
+
     private String email;
 
     private String phone;

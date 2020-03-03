@@ -2,6 +2,7 @@ package com.meikinfo.erukaprovide.erukaprovide.dao;
 
 import com.meikinfo.erukaprovide.erukaprovide.domain.Person;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -19,4 +20,5 @@ public interface PersonMapper {
 
     int insertList(List<Person> peoples);
 
+    List<Person> selectByparam(@Param("politicid") Long politicid, @Param("posid")Long posid);
 }
